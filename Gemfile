@@ -40,6 +40,18 @@ group :development, :test do
   gem 'byebug'
 end
 
+group :test do
+  gem 'rspec'
+  gem 'rspec-rails'
+  gem 'shoulda-matchers', require: false
+  gem 'flexmock'
+  gem 'factory_girl_rails'
+  gem 'test_after_commit'
+  gem 'faker'
+
+  gem 'simplecov', :require => false
+end
+
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
