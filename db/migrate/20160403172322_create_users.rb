@@ -6,7 +6,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string "email"
       t.string "mobile_number"
       t.string "encrypted_password"
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end
