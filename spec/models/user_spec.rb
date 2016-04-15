@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe User, :type => :model do
+  describe "Validations" do
+    subject { create :user }
+
+    it { should validate_presence_of :first_name }
+    it { should validate_uniqueness_of :email }
+  end
 
   describe "#password encryption" do
     let(:user) { create :user }
@@ -59,7 +65,7 @@ RSpec.describe User, :type => :model do
     it "creates an unique auth token for user" do
       user_with_common_token = User
                                .where(auth_token: @new_user.auth_token)
-    
+
       expect(user_with_common_token.count).to eq(1)
     end
   end
