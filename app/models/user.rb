@@ -6,12 +6,18 @@ class User < ActiveRecord::Base
 
   before_create :generate_auth_token
 
+  validates :first_name, presence: true
+  validates :email, uniqueness: true
+  validates :password, length: { minimum: 8 }
+
   def password
-    Password.new(encrypted_password)
+    unless encrypted_password.blank?
+      Password.new(encrypted_password)
+    end
   end
 
   def password=(new_password)
-    self.encrypted_password = Password.create(new_password)
+    self.encrypted_password = Password.create(new_password).to_s
   end
 
   private
